@@ -1,7 +1,10 @@
 #!/bin/sh
 set -e
+
+LOCATION=pwd
+
 ######## KTLINT-GRADLE HOOK START ########
-curl -s -L "https://raw.githubusercontent.com/adaptdk/am-ktlint-editorconfig/master/.editorconfig" > .editorconfig
+curl -s -L "https://raw.githubusercontent.com/adaptdk/am-ktlint-editorconfig/master/.editorconfig" > LOCATION/.editorconfig
 
 CHANGED_FILES="$(git --no-pager diff --name-status --no-color --cached | awk '$1 != "D" && $2 ~ /\.kts|\.kt/ { print $2}')"
 
