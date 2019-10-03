@@ -14,7 +14,7 @@ echo "Running ktlint over these files:"
 echo "$CHANGED_FILES"
 
 # ./gradlew --quiet ktlintFormat -PinternalKtlintGitFilter="$CHANGED_FILES"
-ktlint -F $CHANGED_FILES
+ktlint --android -F $CHANGED_FILES
 
 echo "Completed ktlint run."
 
