@@ -1,7 +1,14 @@
 #!/bin/sh
 set -e
 
-LOCATION=`pwd`
+LOCATION=$(python3 - <<'END_SCRIPT'
+import os
+for dirpath, dirnames, files in os.walk(os.getcwd()):
+    for file in files:
+        if file == "settings.gradle":
+            os.chdir(dirpath)
+            print(os.getcwd())
+END_SCRIPT)
 
 ######## KTLINT-GRADLE HOOK START ########
 curl -s -L "https://raw.githubusercontent.com/adaptdk/am-ktlint-editorconfig/master/.editorconfig" > ${LOCATION}/.editorconfig
@@ -17,7 +24,7 @@ echo "Running ktlint over these files:"
 echo "$CHANGED_FILES"
 
 # ./gradlew --quiet ktlintFormat -PinternalKtlintGitFilter="$CHANGED_FILES"
-ktlint --android -F $CHANGED_FILES
+ktlint -F $CHANGED_FILES
 
 echo "Completed ktlint run."
 
