@@ -8,7 +8,8 @@ for dirpath, dirnames, files in os.walk(os.getcwd()):
         if file == "settings.gradle":
             os.chdir(dirpath)
             print(os.getcwd())
-END_SCRIPT)
+END_SCRIPT
+)
 
 ######## KTLINT-GRADLE HOOK START ########
 curl -s -L "https://raw.githubusercontent.com/adaptdk/am-ktlint-editorconfig/master/.editorconfig" > ${LOCATION}/.editorconfig
